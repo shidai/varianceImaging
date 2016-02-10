@@ -1210,7 +1210,7 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 	float *m;
 
 	float *var, *var_n;
-	float varVar_n, meanVar, meanVarN;
+	float varVar, varVar_n, meanVar, meanVarN;
 
 	int nsub = control->nsub;
 	int nchan = control->nchan;
@@ -1249,9 +1249,10 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 	meanVar = meanVar/n;
 	meanVarN = meanVarN/n;
 
+	varVar = variance (var, n);
 	varVar_n = variance (var_n, n);
 
-	printf ("Results: %f %f %f %f\n", m0, meanVar, meanVarN, varVar_n);
+	printf ("Results: %f %f %f %f %f\n", m0, meanVar, varVar, meanVarN, varVar_n);
 
 	maxV = find_max_value(n,var);
 	minV = find_min_value(n,var);
