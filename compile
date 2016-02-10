@@ -1,0 +1,1 @@
+gcc -o dynSpecSim dynSpecSim.c T2toolkit.c -Wall -lm -lfftw3 -lpgplot -lcpgplot
