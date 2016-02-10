@@ -1210,6 +1210,7 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 	float *m;
 
 	float *var, *var_n;
+	float varVar_n, meanVar;
 
 	int nsub = control->nsub;
 	int nchan = control->nchan;
@@ -1236,13 +1237,18 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 	}
 
 	m0 = 0.0;
+	meanVar = 0.0;
 	for (i=0; i<n; i++)
 	{
 		m0 += m[i];
+		meanVar += var[i];
 	}
 	m0 = m0/n;
+	meanVar = meanVar/n;
 
-	printf ("Averaged modulation index: %f\n", m0);
+	varVar_n = variance (var_n, n);
+
+	printf ("Results: %f %f %f\n", m0, meanVar, varVar_n);
 
 	maxV = find_max_value(n,var);
 	minV = find_min_value(n,var);
