@@ -1267,8 +1267,8 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 		val = (float*)malloc(sizeof(float)*step);
 		xHisN = (float*)malloc(sizeof(float)*step);
 		valN = (float*)malloc(sizeof(float)*step);
-		histogram (var_n, n, xHisN, valN, minVN-0.1, maxVN+0.1, step);
-		histogram (var, n, xHis, val, minV-0.1, maxV+0.1, step);
+		histogram (var_n, n, xHisN, valN, minVN-2*(maxVN-minVN)/step, maxVN+2*(maxVN-minVN)/step, step);
+		histogram (var, n, xHis, val, minV-2*(maxV-minV)/step, maxV+2*(maxV-minV)/step, step);
 
       		cpgsch(1); // set character height
       		cpgscf(1); // set character font
@@ -1278,7 +1278,7 @@ int qualifyVar (acfStruct *acfStructure, controlStruct *control)
 		max2 = find_max_value(step,val);
 		max = (max1 >= max2 ? max1 : max2);
       		//cpgenv(-5,5,0,4500,0,1); // set window and viewport and draw labeled frame
-      		cpgenv(minV-1, maxV+1, 0, max+0.1*max, 0, 1); // set window and viewport and draw labeled frame
+      		cpgenv(minVN-1, maxV+1, 0, max+0.1*max, 0, 1); // set window and viewport and draw labeled frame
 
 		sprintf(caption, "%s", "Variance histogram");
       		cpglab("Variance","Number",caption);
